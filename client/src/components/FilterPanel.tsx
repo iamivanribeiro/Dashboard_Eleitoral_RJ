@@ -8,6 +8,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { Map, BarChart3, Network } from "lucide-react";
 
 interface FilterPanelProps {
   candidato: "flavio" | "canella";
@@ -57,16 +58,19 @@ export default function FilterPanel({
             onValueChange={(value) => {
               if (value) onMetricaChange(value as "votos" | "sinergia" | "regiao");
             }}
-            className="justify-start"
+            className="flex flex-col gap-2 w-full"
           >
-            <ToggleGroupItem value="votos" aria-label="Volume de Votos">
+            <ToggleGroupItem value="regiao" className="justify-start w-full gap-2" aria-label="Região">
+              <Map className="h-4 w-4" />
+              Região
+            </ToggleGroupItem>
+            <ToggleGroupItem value="votos" className="justify-start w-full gap-2" aria-label="Volume de Votos">
+              <BarChart3 className="h-4 w-4" />
               Volume de Votos
             </ToggleGroupItem>
-            <ToggleGroupItem value="sinergia" aria-label="Nível de Sinergia">
+            <ToggleGroupItem value="sinergia" className="justify-start w-full gap-2" aria-label="Nível de Sinergia">
+              <Network className="h-4 w-4" />
               Nível de Sinergia
-            </ToggleGroupItem>
-            <ToggleGroupItem value="regiao" aria-label="Região">
-              Região
             </ToggleGroupItem>
           </ToggleGroup>
         </div>

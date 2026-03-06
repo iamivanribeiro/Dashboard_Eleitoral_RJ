@@ -7,7 +7,7 @@ import ComparativoRegional from "@/components/ComparativoRegional";
 
 export default function Home() {
   const [candidato, setCandidato] = useState<"flavio" | "canella">("flavio");
-  const [metrica, setMetrica] = useState<"votos" | "sinergia" | "regiao">("sinergia");
+  const [metrica, setMetrica] = useState<"votos" | "sinergia" | "regiao">("regiao");
   const [municipioSelecionado, setMunicipioSelecionado] =
     useState<Municipio | null>(null);
 
