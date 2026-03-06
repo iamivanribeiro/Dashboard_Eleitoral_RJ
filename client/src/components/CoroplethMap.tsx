@@ -256,7 +256,7 @@ const MapLegend = ({
 }) => {
   if (metrica === "regiao") {
     return (
-      <div className="absolute bottom-2 left-2 bg-white/80 backdrop-blur-sm p-3 rounded-lg shadow-md">
+      <div className="absolute bottom-2 right-2 bg-white/80 backdrop-blur-sm p-3 rounded-lg shadow-md">
         <h4 className="font-semibold text-xs mb-2">Regiões</h4>
         <div className="grid grid-cols-2 gap-x-4 gap-y-1">
           {Object.entries(regioesColors).map(([regiao, color]) => (
