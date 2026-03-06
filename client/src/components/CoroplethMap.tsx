@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { municipios, Municipio } from "@/data/municipios";
+import { municipios, Municipio, getRegioes } from "@/data/municipios";
 import { Card } from "@/components/ui/card";
 
 interface CoroplethMapProps {
-  metrica: "votos" | "sinergia";
+  metrica: "votos" | "sinergia" | "regiao";
   candidato: "flavio" | "canella";
   onMunicipioClick?: (municipio: Municipio) => void;
 }
@@ -14,7 +14,6 @@ export default function CoroplethMap({
   onMunicipioClick,
 }: CoroplethMapProps) {
   const [geoData, setGeoData] = useState<any>(null);
-  const [hoveredMunicipio, setHoveredMunicipio] = useState<Municipio | null>(null);
   const [tooltip, setTooltip] = useState<{
     x: number;
     y: number;
@@ -46,33 +45,55 @@ export default function CoroplethMap({
     return map;
   }, []);
 
+  // Cores para as regiões
+  const REGIOES_COLORS: { [key: string]: string } = useMemo(() => {
+    const regioes = getRegioes();
+    const colors = [
+      "#3b82f6", // blue-500
+      "#10b981", // emerald-500
+      "#f59e0b", // amber-500
+      "#ef4444", // red-500
+      "#8b5cf6", // violet-500
+      "#ec4899", // pink-500
+      "#14b8a6", // teal-500
+      "#f97316", // orange-500
+    ];
+    const colorMap: { [key: string]: string } = {};
+    regioes.forEach((regiao, index) => {
+      colorMap[regiao] = colors[index % colors.length];
+    });
+    return colorMap;
+  }, []);
+
   // Calcular cor baseada na métrica
   const getColor = (municipio: Municipio | undefined): string => {
     if (!municipio) return "#f3f4f6"; // Cor padrão para sem dados
 
-    let valor: number;
+    if (metrica === "regiao") {
+      return REGIOES_COLORS[municipio.regiao] || "#e5e7eb";
+    }
 
+    let valor: number;
     if (metrica === "votos") {
       valor =
         candidato === "flavio"
           ? municipio.percentualFlavio
           : municipio.percentualCanella;
-    } else {
+    } else { // Sinergia
       valor = municipio.sinergia;
     }
 
-    // Escala de cores: verde (baixo) -> amarelo -> vermelho (alto)
-    if (valor < 10) return "#e8f5e9";
-    if (valor < 15) return "#c8e6c9";
-    if (valor < 20) return "#a5d6a7";
-    if (valor < 25) return "#81c784";
-    if (valor < 30) return "#66bb6a";
-    if (valor < 35) return "#4caf50";
-    if (valor < 40) return "#43a047";
-    if (valor < 50) return "#388e3c";
-    if (valor < 60) return "#2e7d32";
-    if (valor < 70) return "#1b5e20";
-    return "#0d3818";
+    // Escala de cores: Azul (baixo) para Vermelho (alto)
+    if (valor < 10) return "#eff6ff"; // blue-50
+    if (valor < 20) return "#dbeafe"; // blue-100
+    if (valor < 30) return "#bfdbfe"; // blue-200
+    if (valor < 40) return "#93c5fd"; // blue-300
+    if (valor < 50) return "#60a5fa"; // blue-400
+    if (valor < 60) return "#fed7aa"; // orange-200
+    if (valor < 70) return "#fb923c"; // orange-400
+    if (valor < 80) return "#f87171"; // red-400
+    if (valor < 90) return "#ef4444"; // red-500
+    return "#dc2626"; // red-600
   };
 
   // Obter valor para tooltip
@@ -87,8 +108,10 @@ export default function CoroplethMap({
           ? municipio.percentualFlavio
           : municipio.percentualCanella;
       return `${valor.toLocaleString("pt-BR")} votos (${percentual.toFixed(2)}%)`;
-    } else {
+    } else if (metrica === "sinergia") {
       return `Sinergia: ${municipio.sinergia.toFixed(2)}%`;
+    } else {
+      return ""; // Região já é mostrada no cabeçalho do tooltip
     }
   };
 
@@ -191,18 +214,18 @@ export default function CoroplethMap({
                       y: rect.top,
                       municipio: p.municipio,
                     });
-                    setHoveredMunicipio(p.municipio);
                   }
                 }}
                 onMouseLeave={() => {
                   setTooltip(null);
-                  setHoveredMunicipio(null);
                 }}
                 onClick={() => p.municipio && onMunicipioClick?.(p.municipio)}
               />
             ))}
           </svg>
         )}
+
+        <MapLegend metrica={metrica} regioesColors={REGIOES_COLORS} />
 
         {/* Tooltip */}
         {tooltip && (
@@ -222,3 +245,48 @@ export default function CoroplethMap({
     </Card>
   );
 }
+
+// Componente para a Legenda do Mapa
+const MapLegend = ({
+  metrica,
+  regioesColors,
+}: {
+  metrica: "votos" | "sinergia" | "regiao";
+  regioesColors: { [key: string]: string };
+}) => {
+  if (metrica === "regiao") {
+    return (
+      <div className="absolute bottom-2 left-2 bg-white/80 backdrop-blur-sm p-3 rounded-lg shadow-md">
+        <h4 className="font-semibold text-xs mb-2">Regiões</h4>
+        <div className="grid grid-cols-2 gap-x-4 gap-y-1">
+          {Object.entries(regioesColors).map(([regiao, color]) => (
+            <div key={regiao} className="flex items-center space-x-2">
+              <div
+                className="w-3 h-3 rounded-sm"
+                style={{ backgroundColor: color }}
+              />
+              <span className="text-xs">{regiao}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  const legendTitle = metrica === "votos" ? "Votos (%)" : "Sinergia (%)";
+  const gradient = "linear-gradient(to right, #eff6ff, #60a5fa, #fb923c, #dc2626)";
+
+  return (
+    <div className="absolute bottom-2 left-2 bg-white/80 backdrop-blur-sm p-3 rounded-lg shadow-md">
+      <h4 className="font-semibold text-xs mb-1">{legendTitle}</h4>
+      <div className="flex items-center space-x-2">
+        <span className="text-xs">Baixo</span>
+        <div
+          className="w-24 h-3 rounded"
+          style={{ background: gradient }}
+        />
+        <span className="text-xs">Alto</span>
+      </div>
+    </div>
+  );
+};

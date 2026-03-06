@@ -33,13 +33,16 @@ export default function FilterPanel({
           <label className="text-sm font-medium text-gray-700 block mb-2">
             Candidato
           </label>
-          <Select value={candidato} onValueChange={(value: any) => onCandidatoChange(value)}>
+          <Select
+            value={candidato}
+            onValueChange={(value: any) => onCandidatoChange(value)}
+          >
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Selecione um candidato" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="flavio">Flávio Bolsonaro (Presidente)</SelectItem>
-              <SelectItem value="canella">Márcio Canella (Senado)</SelectItem>
+              <SelectItem value="flavio">Flávio Bolsonaro (Senado 2018)</SelectItem>
+              <SelectItem value="canella">Márcio Canella (Deputado 2022)</SelectItem>
             </SelectContent>
           </Select>
         </div>
