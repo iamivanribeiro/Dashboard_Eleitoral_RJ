@@ -11,9 +11,9 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 interface FilterPanelProps {
   candidato: "flavio" | "canella";
-  metrica: "votos" | "sinergia";
+  metrica: "votos" | "sinergia" | "regiao";
   onCandidatoChange: (candidato: "flavio" | "canella") => void;
-  onMetricaChange: (metrica: "votos" | "sinergia") => void;
+  onMetricaChange: (metrica: "votos" | "sinergia" | "regiao") => void;
 }
 
 export default function FilterPanel({
@@ -52,7 +52,7 @@ export default function FilterPanel({
             type="single"
             value={metrica}
             onValueChange={(value) => {
-              if (value) onMetricaChange(value as "votos" | "sinergia");
+              if (value) onMetricaChange(value as "votos" | "sinergia" | "regiao");
             }}
             className="justify-start"
           >
@@ -61,6 +61,9 @@ export default function FilterPanel({
             </ToggleGroupItem>
             <ToggleGroupItem value="sinergia" aria-label="Nível de Sinergia">
               Nível de Sinergia
+            </ToggleGroupItem>
+            <ToggleGroupItem value="regiao" aria-label="Região">
+              Região
             </ToggleGroupItem>
           </ToggleGroup>
         </div>
