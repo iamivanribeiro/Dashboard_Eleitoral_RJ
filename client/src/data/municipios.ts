@@ -20,7 +20,7 @@ export const municipios: Municipio[] = [
   {
     id: "belford-roxo",
     nome: "Belford Roxo",
-    regiao: "Metropolitana do Rio de Janeiro",
+    regiao: "Baixada Fluminense",
     votosFlavio: 117980,
     percentualFlavio: 32.20,
     votosCanella: 108104,
@@ -72,7 +72,7 @@ export const municipios: Municipio[] = [
   {
     id: "iguaba-grande",
     nome: "Iguaba Grande",
-    regiao: "Baixadas",
+    regiao: "Baixada Litorânea",
     votosFlavio: 10176,
     percentualFlavio: 36.29,
     votosCanella: 1088,
@@ -85,7 +85,7 @@ export const municipios: Municipio[] = [
   {
     id: "araruama",
     nome: "Araruama",
-    regiao: "Baixadas",
+    regiao: "Baixada Litorânea",
     votosFlavio: 39583,
     percentualFlavio: 36.60,
     votosCanella: 3225,
@@ -98,7 +98,7 @@ export const municipios: Municipio[] = [
   {
     id: "arraial-do-cabo",
     nome: "Arraial do Cabo",
-    regiao: "Baixadas",
+    regiao: "Baixada Litorânea",
     votosFlavio: 11363,
     percentualFlavio: 33.00,
     votosCanella: 1049,
@@ -111,7 +111,7 @@ export const municipios: Municipio[] = [
   {
     id: "queimados",
     nome: "Queimados",
-    regiao: "Metropolitana do Rio de Janeiro",
+    regiao: "Baixada Fluminense",
     votosFlavio: 29320,
     percentualFlavio: 30.67,
     votosCanella: 3217,
@@ -137,7 +137,7 @@ export const municipios: Municipio[] = [
   {
     id: "mesquita",
     nome: "Mesquita",
-    regiao: "Metropolitana do Rio de Janeiro",
+    regiao: "Baixada Fluminense",
     votosFlavio: 56099,
     percentualFlavio: 35.40,
     votosCanella: 3048,
@@ -176,7 +176,7 @@ export const municipios: Municipio[] = [
   {
     id: "nova-iguacu",
     nome: "Nova Iguaçu",
-    regiao: "Metropolitana do Rio de Janeiro",
+    regiao: "Baixada Fluminense",
     votosFlavio: 226662,
     percentualFlavio: 33.93,
     votosCanella: 9185,
@@ -202,7 +202,7 @@ export const municipios: Municipio[] = [
   {
     id: "sao-pedro-da-aldeia",
     nome: "São Pedro da Aldeia",
-    regiao: "Baixadas",
+    regiao: "Baixada Litorânea",
     votosFlavio: 29424,
     percentualFlavio: 37.35,
     votosCanella: 939,
@@ -215,7 +215,7 @@ export const municipios: Municipio[] = [
   {
     id: "duque-de-caxias",
     nome: "Duque de Caxias",
-    regiao: "Metropolitana do Rio de Janeiro",
+    regiao: "Baixada Fluminense",
     votosFlavio: 229822,
     percentualFlavio: 32.80,
     votosCanella: 9584,
@@ -241,7 +241,7 @@ export const municipios: Municipio[] = [
   {
     id: "japeri",
     nome: "Japeri",
-    regiao: "Metropolitana do Rio de Janeiro",
+    regiao: "Baixada Fluminense",
     votosFlavio: 25423,
     percentualFlavio: 30.63,
     votosCanella: 997,
@@ -306,7 +306,7 @@ export const municipios: Municipio[] = [
   {
     id: "itaguai",
     nome: "Itaguaí",
-    regiao: "Metropolitana do Rio de Janeiro",
+    regiao: "Baixada Fluminense",
     votosFlavio: 37542,
     percentualFlavio: 35.74,
     votosCanella: 887,
@@ -332,7 +332,7 @@ export const municipios: Municipio[] = [
   {
     id: "sao-joao-de-meriti",
     nome: "São João de Meriti",
-    regiao: "Metropolitana do Rio de Janeiro",
+    regiao: "Baixada Fluminense",
     votosFlavio: 139560,
     percentualFlavio: 34.42,
     votosCanella: 3271,
@@ -345,7 +345,7 @@ export const municipios: Municipio[] = [
   {
     id: "guapimirim",
     nome: "Guapimirim",
-    regiao: "Metropolitana do Rio de Janeiro",
+    regiao: "Baixada Fluminense",
     votosFlavio: 14421,
     percentualFlavio: 30.44,
     votosCanella: 437,
@@ -358,7 +358,7 @@ export const municipios: Municipio[] = [
   {
     id: "rio-das-ostras",
     nome: "Rio das Ostras",
-    regiao: "Baixadas",
+    regiao: "Baixada Litorânea",
     votosFlavio: 34086,
     percentualFlavio: 35.22,
     votosCanella: 794,
@@ -384,7 +384,7 @@ export const municipios: Municipio[] = [
   {
     id: "seropedica",
     nome: "Seropédica",
-    regiao: "Metropolitana do Rio de Janeiro",
+    regiao: "Baixada Fluminense",
     votosFlavio: 20849,
     percentualFlavio: 32.41,
     votosCanella: 516,
@@ -462,7 +462,7 @@ export const municipios: Municipio[] = [
   {
     id: "armacao-dos-buzios",
     nome: "Armação dos Búzios",
-    regiao: "Baixadas",
+    regiao: "Baixada Litorânea",
     votosFlavio: 11354,
     percentualFlavio: 33.35,
     votosCanella: 154,
@@ -527,7 +527,7 @@ export const municipios: Municipio[] = [
   {
     id: "cabo-frio",
     nome: "Cabo Frio",
-    regiao: "Baixadas",
+    regiao: "Baixada Litorânea",
     votosFlavio: 60179,
     percentualFlavio: 33.37,
     votosCanella: 679,
@@ -579,7 +579,7 @@ export const municipios: Municipio[] = [
   {
     id: "paracambi",
     nome: "Paracambi",
-    regiao: "Metropolitana do Rio de Janeiro",
+    regiao: "Baixada Fluminense",
     votosFlavio: 13460,
     percentualFlavio: 32.63,
     votosCanella: 140,
@@ -644,7 +644,7 @@ export const municipios: Municipio[] = [
   {
     id: "nilopolis",
     nome: "Nilópolis",
-    regiao: "Metropolitana do Rio de Janeiro",
+    regiao: "Baixada Fluminense",
     votosFlavio: 57131,
     percentualFlavio: 35.19,
     votosCanella: 381,
@@ -670,7 +670,7 @@ export const municipios: Municipio[] = [
   {
     id: "silva-jardim",
     nome: "Silva Jardim",
-    regiao: "Baixadas",
+    regiao: "Baixada Litorânea",
     votosFlavio: 7334,
     percentualFlavio: 32.93,
     votosCanella: 57,
@@ -683,7 +683,7 @@ export const municipios: Municipio[] = [
   {
     id: "saquarema",
     nome: "Saquarema",
-    regiao: "Baixadas",
+    regiao: "Baixada Litorânea",
     votosFlavio: 27095,
     percentualFlavio: 37.18,
     votosCanella: 190,
@@ -839,7 +839,7 @@ export const municipios: Municipio[] = [
   {
     id: "casimiro-de-abreu",
     nome: "Casimiro de Abreu",
-    regiao: "Baixadas",
+    regiao: "Baixada Litorânea",
     votosFlavio: 13116,
     percentualFlavio: 35.60,
     votosCanella: 58,
@@ -930,7 +930,7 @@ export const municipios: Municipio[] = [
   {
     id: "mage",
     nome: "Magé",
-    regiao: "Metropolitana do Rio de Janeiro",
+    regiao: "Baixada Fluminense",
     votosFlavio: 65859,
     percentualFlavio: 32.07,
     votosCanella: 234,
