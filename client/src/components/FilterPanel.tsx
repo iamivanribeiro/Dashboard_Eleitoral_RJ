@@ -20,6 +20,7 @@ interface FilterPanelProps {
   buscaMunicipio: string;
   sinergiaMin: number;
   populacaoMin: number;
+  municipioSugestoes: string[];
   onCandidatoChange: (candidato: "flavio" | "canella") => void;
   onMetricaChange: (metrica: "votos" | "sinergia" | "regiao") => void;
   onRegiaoChange: (regiao: string) => void;
@@ -38,6 +39,7 @@ export default function FilterPanel({
   buscaMunicipio,
   sinergiaMin,
   populacaoMin,
+  municipioSugestoes,
   onCandidatoChange,
   onMetricaChange,
   onRegiaoChange,
@@ -64,13 +66,8 @@ export default function FilterPanel({
 
       <div className="space-y-4">
         <div>
-          <label className="text-sm font-medium text-gray-700 block mb-2" htmlFor="candidato-select">
-            Candidato
-          </label>
-          <Select
-            value={candidato}
-            onValueChange={(value: "flavio" | "canella") => onCandidatoChange(value)}
-          >
+          <label className="text-sm font-medium text-gray-700 block mb-2" htmlFor="candidato-select">Candidato</label>
+          <Select value={candidato} onValueChange={(value: "flavio" | "canella") => onCandidatoChange(value)}>
             <SelectTrigger id="candidato-select" className="w-full">
               <SelectValue placeholder="Selecione um candidato" />
             </SelectTrigger>
@@ -82,9 +79,7 @@ export default function FilterPanel({
         </div>
 
         <div>
-          <label className="text-sm font-medium text-gray-700 block mb-2" htmlFor="regiao-select">
-            Região
-          </label>
+          <label className="text-sm font-medium text-gray-700 block mb-2" htmlFor="regiao-select">Região</label>
           <Select value={regiaoSelecionada} onValueChange={onRegiaoChange}>
             <SelectTrigger id="regiao-select" className="w-full">
               <SelectValue placeholder="Todas as regiões" />
@@ -99,9 +94,7 @@ export default function FilterPanel({
         </div>
 
         <div>
-          <label className="text-sm font-medium text-gray-700 block mb-2" htmlFor="buscar-municipio">
-            Buscar município
-          </label>
+          <label className="text-sm font-medium text-gray-700 block mb-2" htmlFor="buscar-municipio">Buscar município</label>
           <div className="relative">
             <Search className="h-4 w-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
             <Input
@@ -110,7 +103,13 @@ export default function FilterPanel({
               onChange={(e) => onBuscaMunicipioChange(e.target.value)}
               className="pl-9"
               placeholder="Ex: Niterói"
+              list="municipio-sugestoes"
             />
+            <datalist id="municipio-sugestoes">
+              {municipioSugestoes.map((nome) => (
+                <option key={nome} value={nome} />
+              ))}
+            </datalist>
           </div>
         </div>
 
@@ -119,52 +118,24 @@ export default function FilterPanel({
           <ToggleGroup
             type="single"
             value={metrica}
-            onValueChange={(value) => {
-              if (value) onMetricaChange(value as "votos" | "sinergia" | "regiao");
-            }}
+            onValueChange={(value) => { if (value) onMetricaChange(value as "votos" | "sinergia" | "regiao"); }}
             className="flex flex-col gap-2 w-full"
             aria-label="Escolha de métrica do mapa"
           >
-            <ToggleGroupItem value="regiao" className="justify-start w-full gap-2" aria-label="Região">
-              <Map className="h-4 w-4" /> Região
-            </ToggleGroupItem>
-            <ToggleGroupItem value="votos" className="justify-start w-full gap-2" aria-label="Volume de Votos">
-              <BarChart3 className="h-4 w-4" /> Volume de Votos
-            </ToggleGroupItem>
-            <ToggleGroupItem value="sinergia" className="justify-start w-full gap-2" aria-label="Nível de Sinergia">
-              <Network className="h-4 w-4" /> Nível de Sinergia
-            </ToggleGroupItem>
+            <ToggleGroupItem value="regiao" className="justify-start w-full gap-2" aria-label="Região"><Map className="h-4 w-4" /> Região</ToggleGroupItem>
+            <ToggleGroupItem value="votos" className="justify-start w-full gap-2" aria-label="Volume de Votos"><BarChart3 className="h-4 w-4" /> Volume de Votos</ToggleGroupItem>
+            <ToggleGroupItem value="sinergia" className="justify-start w-full gap-2" aria-label="Nível de Sinergia"><Network className="h-4 w-4" /> Nível de Sinergia</ToggleGroupItem>
           </ToggleGroup>
         </div>
 
         <div>
-          <label className="text-sm font-medium text-gray-700 block mb-2" htmlFor="sinergia-range">
-            Sinergia mínima: {sinergiaMin.toFixed(0)}%
-          </label>
-          <Input
-            id="sinergia-range"
-            type="range"
-            min={0}
-            max={100}
-            step={1}
-            value={sinergiaMin}
-            onChange={(e) => onSinergiaMinChange(Number(e.target.value))}
-          />
+          <label className="text-sm font-medium text-gray-700 block mb-2" htmlFor="sinergia-range">Sinergia mínima: {sinergiaMin.toFixed(0)}%</label>
+          <Input id="sinergia-range" type="range" min={0} max={100} step={1} value={sinergiaMin} onChange={(e) => onSinergiaMinChange(Number(e.target.value))} />
         </div>
 
         <div>
-          <label className="text-sm font-medium text-gray-700 block mb-2" htmlFor="populacao-range">
-            População mínima: {populacaoMin.toLocaleString("pt-BR")}
-          </label>
-          <Input
-            id="populacao-range"
-            type="range"
-            min={0}
-            max={1200000}
-            step={5000}
-            value={populacaoMin}
-            onChange={(e) => onPopulacaoMinChange(Number(e.target.value))}
-          />
+          <label className="text-sm font-medium text-gray-700 block mb-2" htmlFor="populacao-range">População mínima: {populacaoMin.toLocaleString("pt-BR")}</label>
+          <Input id="populacao-range" type="range" min={0} max={1200000} step={5000} value={populacaoMin} onChange={(e) => onPopulacaoMinChange(Number(e.target.value))} />
         </div>
       </div>
     </Card>
