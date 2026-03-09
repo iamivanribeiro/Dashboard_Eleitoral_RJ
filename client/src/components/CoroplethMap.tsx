@@ -5,12 +5,14 @@ import { Card } from "@/components/ui/card";
 interface CoroplethMapProps {
   metrica: "votos" | "sinergia" | "regiao";
   candidato: "flavio" | "canella";
+  municipiosFiltrados: Municipio[];
   onMunicipioClick?: (municipio: Municipio) => void;
 }
 
 export default function CoroplethMap({
   metrica,
   candidato,
+  municipiosFiltrados,
   onMunicipioClick,
 }: CoroplethMapProps) {
   const [geoData, setGeoData] = useState<any>(null);
@@ -44,6 +46,8 @@ export default function CoroplethMap({
     municipios.forEach((m) => map.set(normalizeName(m.nome), m));
     return map;
   }, []);
+
+  const municipiosFiltradosSet = useMemo(() => new Set(municipiosFiltrados.map((m) => m.id)), [municipiosFiltrados]);
 
   // Cores para as regiões
   const REGIOES_COLORS: { [key: string]: string } = useMemo(() => {
@@ -203,6 +207,7 @@ export default function CoroplethMap({
                 key={i}
                 d={p.d}
                 fill={getColor(p.municipio)}
+                fillOpacity={p.municipio && municipiosFiltradosSet.has(p.municipio.id) ? 1 : 0.2}
                 stroke="#ffffff"
                 strokeWidth="0.5"
                 className="transition-all duration-200 cursor-pointer hover:opacity-80 hover:stroke-gray-500 hover:stroke-1"
@@ -219,7 +224,11 @@ export default function CoroplethMap({
                 onMouseLeave={() => {
                   setTooltip(null);
                 }}
-                onClick={() => p.municipio && onMunicipioClick?.(p.municipio)}
+                onClick={() =>
+                  p.municipio &&
+                  municipiosFiltradosSet.has(p.municipio.id) &&
+                  onMunicipioClick?.(p.municipio)
+                }
               />
             ))}
           </svg>
