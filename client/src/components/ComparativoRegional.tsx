@@ -79,23 +79,23 @@ export default function ComparativoRegional({
     <Card className="p-6 space-y-4">
       <div>
         <h3 className="text-lg font-semibold mb-1">Análise por Região</h3>
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-gray-600 dark:text-slate-300">
           Comparativo de votos e sinergia por região do Rio de Janeiro
         </p>
       </div>
 
       {chartData.length === 0 ? (
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-gray-500 dark:text-slate-400">
           Nenhuma região disponível para os filtros selecionados.
         </p>
       ) : (
         <>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {top3Sinergia.map((item, index) => (
-              <div key={item.regiao} className="rounded-lg border border-slate-200 p-3 bg-slate-50/60">
+              <div key={item.regiao} className="rounded-lg border border-slate-200 dark:border-slate-700 p-3 bg-slate-50/60 dark:bg-slate-900/50">
                 <p className="text-xs text-slate-500">Top {index + 1} sinergia</p>
-                <p className="font-semibold text-sm text-slate-900">{item.regiao}</p>
-                <p className="text-sm font-bold text-emerald-700">{item.sinergia.toFixed(2)}%</p>
+                <p className="font-semibold text-sm text-slate-900 dark:text-slate-100">{item.regiao}</p>
+                <p className="text-sm font-bold text-emerald-700 dark:text-emerald-400">{item.sinergia.toFixed(2)}%</p>
               </div>
             ))}
           </div>
@@ -136,22 +136,22 @@ export default function ComparativoRegional({
             <TabsContent value="lista" className="mt-4">
               <div className="space-y-2">
                 {chartData.map((item) => (
-                  <div key={item.regiao} className="rounded-md border border-gray-200 p-3">
+                  <div key={item.regiao} className="rounded-md border border-gray-200 dark:border-slate-700 p-3">
                     <div className="flex items-center justify-between mb-2">
                       <span className="font-semibold text-sm">{item.regiao}</span>
-                      <span className="text-xs text-gray-500">{item.municipios} municípios</span>
+                      <span className="text-xs text-gray-500 dark:text-slate-400">{item.municipios} municípios</span>
                     </div>
                     <div className="grid grid-cols-3 gap-2 text-xs md:text-sm">
                       <div>
-                        <p className="text-gray-600">Votos</p>
+                        <p className="text-gray-600 dark:text-slate-300">Votos</p>
                         <p className="font-semibold">{item.votos.toLocaleString("pt-BR")}</p>
                       </div>
                       <div>
-                        <p className="text-gray-600">Percentual</p>
+                        <p className="text-gray-600 dark:text-slate-300">Percentual</p>
                         <p className="font-semibold">{item.percentual.toFixed(2)}%</p>
                       </div>
                       <div>
-                        <p className="text-gray-600">Sinergia</p>
+                        <p className="text-gray-600 dark:text-slate-300">Sinergia</p>
                         <p className="font-semibold text-green-600">{item.sinergia.toFixed(2)}%</p>
                       </div>
                     </div>

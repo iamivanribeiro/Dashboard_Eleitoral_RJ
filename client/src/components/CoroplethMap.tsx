@@ -265,18 +265,18 @@ export default function CoroplethMap({
     <Card className="w-full h-full p-4">
       <div className="relative w-full h-full flex items-center justify-center min-h-[400px]">
         {!geoData && !loadError && (
-          <div className="text-center text-gray-500">
+          <div className="text-center text-gray-500 dark:text-slate-400">
             <p>Carregando mapa do Rio de Janeiro...</p>
           </div>
         )}
 
         {loadError && !geoData && (
-          <div className="text-center text-gray-600 bg-gray-50 border border-gray-200 rounded-lg p-4 max-w-md">
+          <div className="text-center text-gray-600 dark:text-slate-300 bg-gray-50 dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg p-4 max-w-md">
             <p className="font-medium mb-2">Não foi possível carregar o mapa.</p>
             <p className="text-sm mb-3">Detalhe: {loadError}</p>
             <button
               type="button"
-              className="text-sm px-3 py-1.5 rounded bg-blue-600 text-white hover:bg-blue-700"
+              className="text-sm px-3 py-1.5 rounded bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400"
               onClick={() => setReloadCount((value) => value + 1)}
             >
               Tentar novamente
@@ -333,7 +333,7 @@ export default function CoroplethMap({
 
         {tooltip && (
           <div
-            className="fixed bg-gray-900 text-white text-sm px-3 py-2 rounded shadow-lg z-50 pointer-events-none transform -translate-x-1/2 -translate-y-full"
+            className="fixed bg-gray-900 dark:bg-slate-800 text-white text-sm px-3 py-2 rounded shadow-lg z-50 pointer-events-none transform -translate-x-1/2 -translate-y-full"
             style={{
               left: tooltip.x,
               top: tooltip.y - 10,
@@ -360,7 +360,7 @@ const MapLegend = ({
 }) => {
   if (metrica === "regiao") {
     return (
-      <div className="absolute bottom-2 right-2 bg-white/80 backdrop-blur-sm p-3 rounded-lg shadow-md">
+      <div className="absolute bottom-2 right-2 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm p-3 rounded-lg shadow-md">
         <h4 className="font-semibold text-xs mb-2">Regiões</h4>
         <div className="grid grid-cols-2 gap-x-4 gap-y-1 mb-2">
           {Object.entries(regioesColors).map(([regiao, color]) => (
@@ -370,7 +370,7 @@ const MapLegend = ({
             </div>
           ))}
         </div>
-        <div className="text-[11px] text-gray-600">Sem dados no mapa: {semDadosCount}</div>
+        <div className="text-[11px] text-gray-600 dark:text-slate-300">Sem dados no mapa: {semDadosCount}</div>
       </div>
     );
   }
@@ -379,14 +379,14 @@ const MapLegend = ({
   const gradient = "linear-gradient(to right, #eff6ff, #60a5fa, #fb923c, #dc2626)";
 
   return (
-    <div className="absolute bottom-2 left-2 bg-white/80 backdrop-blur-sm p-3 rounded-lg shadow-md">
+    <div className="absolute bottom-2 left-2 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm p-3 rounded-lg shadow-md">
       <h4 className="font-semibold text-xs mb-1">{legendTitle}</h4>
       <div className="flex items-center space-x-2 mb-1">
         <span className="text-xs">0</span>
         <div className="w-28 h-3 rounded" style={{ background: gradient }} />
         <span className="text-xs">100</span>
       </div>
-      <div className="text-[11px] text-gray-600">Cinza claro: fora do filtro ou sem dados.</div>
+      <div className="text-[11px] text-gray-600 dark:text-slate-300">Cinza claro: fora do filtro ou sem dados.</div>
     </div>
   );
 };

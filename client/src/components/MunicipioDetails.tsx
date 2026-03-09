@@ -11,7 +11,7 @@ export default function MunicipioDetails({ municipio }: MunicipioDetailsProps) {
   if (!municipio) {
     return (
       <Card className="w-full h-full p-6 flex items-center justify-center">
-        <div className="text-center text-gray-500">
+        <div className="text-center text-gray-500 dark:text-slate-400">
           <p className="text-lg font-semibold">Selecione um município</p>
           <p className="text-sm">Clique em um município no mapa para ver detalhes</p>
         </div>
@@ -43,18 +43,18 @@ export default function MunicipioDetails({ municipio }: MunicipioDetailsProps) {
     <div className="w-full space-y-4">
       <Card className="p-6">
         <h2 className="text-2xl font-bold mb-2">{municipio.nome}</h2>
-        <p className="text-gray-600 mb-4">{municipio.regiao}</p>
+        <p className="text-gray-600 dark:text-slate-300 mb-4">{municipio.regiao}</p>
 
         <div className="grid grid-cols-2 gap-4 mb-6">
           <div>
-            <p className="text-sm text-gray-500">População</p>
+            <p className="text-sm text-gray-500 dark:text-slate-400">População</p>
             <p className="text-lg font-semibold">
               {municipio.populacao.toLocaleString("pt-BR")}
             </p>
           </div>
           <div>
-            <p className="text-sm text-gray-500">Índice de Sinergia</p>
-            <p className="text-lg font-semibold text-green-600">
+            <p className="text-sm text-gray-500 dark:text-slate-400">Índice de Sinergia</p>
+            <p className="text-lg font-semibold text-green-600 dark:text-emerald-400">
               {municipio.sinergia.toFixed(2)}%
             </p>
           </div>
@@ -63,13 +63,13 @@ export default function MunicipioDetails({ municipio }: MunicipioDetailsProps) {
         <div className="space-y-3">
           <div>
             <p className="text-sm font-semibold mb-1">Flávio Bolsonaro (2018)</p>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-600 dark:text-slate-300">
               {municipio.votosFlavio.toLocaleString("pt-BR")} votos ({municipio.percentualFlavio.toFixed(2)}%)
             </p>
           </div>
           <div>
             <p className="text-sm font-semibold mb-1">Márcio Canella (2022)</p>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-600 dark:text-slate-300">
               {municipio.votosCanella.toLocaleString("pt-BR")} votos ({municipio.percentualCanella.toFixed(2)}%)
             </p>
           </div>
@@ -102,22 +102,22 @@ export default function MunicipioDetails({ municipio }: MunicipioDetailsProps) {
           <div>
             <div className="flex justify-between mb-2">
               <span className="text-sm font-medium">Índice de Sinergia</span>
-              <span className="text-sm font-semibold text-green-600">
+              <span className="text-sm font-semibold text-green-600 dark:text-emerald-400">
                 {municipio.sinergia.toFixed(2)}%
               </span>
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-2">
+            <div className="w-full bg-gray-200 dark:bg-slate-700 rounded-full h-2">
               <div
-                className="bg-green-500 h-2 rounded-full"
+                className="bg-green-500 dark:bg-emerald-500 h-2 rounded-full"
                 style={{ width: `${Math.min(municipio.sinergia, 100)}%` }}
               />
             </div>
           </div>
 
-          <div className="mt-4 p-3 bg-blue-50 rounded">
-            <p className="text-sm text-gray-700">
+          <div className="mt-4 p-3 bg-blue-50 dark:bg-slate-800 rounded">
+            <p className="text-sm text-gray-700 dark:text-slate-300">
               <span className="font-semibold">Interpretação:</span> Um índice de sinergia de{" "}
-              <span className="font-semibold text-blue-600">
+              <span className="font-semibold text-blue-600 dark:text-blue-400">
                 {municipio.sinergia.toFixed(2)}%
               </span>{" "}
               indica{" "}

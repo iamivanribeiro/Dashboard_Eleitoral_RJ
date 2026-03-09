@@ -50,7 +50,7 @@ export default function FilterPanel({
   onPresetSelect,
 }: FilterPanelProps) {
   return (
-    <Card className="p-5 space-y-5 border-slate-200/80 shadow-sm">
+    <Card className="p-5 space-y-5 border-slate-200/80 dark:border-slate-700 shadow-sm dark:bg-slate-900/60">
       <div className="flex items-center justify-between gap-2">
         <h2 className="text-base font-semibold">Filtros analíticos</h2>
         <Button type="button" variant="ghost" size="sm" onClick={onClearAll}>
@@ -66,7 +66,7 @@ export default function FilterPanel({
 
       <div className="space-y-4">
         <div>
-          <label className="text-sm font-medium text-gray-700 block mb-2" htmlFor="candidato-select">Candidato</label>
+          <label className="text-sm font-medium text-gray-700 dark:text-slate-300 block mb-2" htmlFor="candidato-select">Candidato</label>
           <Select value={candidato} onValueChange={(value: "flavio" | "canella") => onCandidatoChange(value)}>
             <SelectTrigger id="candidato-select" className="w-full">
               <SelectValue placeholder="Selecione um candidato" />
@@ -79,7 +79,7 @@ export default function FilterPanel({
         </div>
 
         <div>
-          <label className="text-sm font-medium text-gray-700 block mb-2" htmlFor="regiao-select">Região</label>
+          <label className="text-sm font-medium text-gray-700 dark:text-slate-300 block mb-2" htmlFor="regiao-select">Região</label>
           <Select value={regiaoSelecionada} onValueChange={onRegiaoChange}>
             <SelectTrigger id="regiao-select" className="w-full">
               <SelectValue placeholder="Todas as regiões" />
@@ -94,9 +94,9 @@ export default function FilterPanel({
         </div>
 
         <div>
-          <label className="text-sm font-medium text-gray-700 block mb-2" htmlFor="buscar-municipio">Buscar município</label>
+          <label className="text-sm font-medium text-gray-700 dark:text-slate-300 block mb-2" htmlFor="buscar-municipio">Buscar município</label>
           <div className="relative">
-            <Search className="h-4 w-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+            <Search className="h-4 w-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-slate-500" />
             <Input
               id="buscar-municipio"
               value={buscaMunicipio}
@@ -114,7 +114,7 @@ export default function FilterPanel({
         </div>
 
         <div>
-          <span className="text-sm font-medium text-gray-700 block mb-2">Métrica</span>
+          <span className="text-sm font-medium text-gray-700 dark:text-slate-300 block mb-2">Métrica</span>
           <ToggleGroup
             type="single"
             value={metrica}
@@ -129,12 +129,12 @@ export default function FilterPanel({
         </div>
 
         <div>
-          <label className="text-sm font-medium text-gray-700 block mb-2" htmlFor="sinergia-range">Sinergia mínima: {sinergiaMin.toFixed(0)}%</label>
+          <label className="text-sm font-medium text-gray-700 dark:text-slate-300 block mb-2" htmlFor="sinergia-range">Sinergia mínima: {sinergiaMin.toFixed(0)}%</label>
           <Input id="sinergia-range" type="range" min={0} max={100} step={1} value={sinergiaMin} onChange={(e) => onSinergiaMinChange(Number(e.target.value))} />
         </div>
 
         <div>
-          <label className="text-sm font-medium text-gray-700 block mb-2" htmlFor="populacao-range">População mínima: {populacaoMin.toLocaleString("pt-BR")}</label>
+          <label className="text-sm font-medium text-gray-700 dark:text-slate-300 block mb-2" htmlFor="populacao-range">População mínima: {populacaoMin.toLocaleString("pt-BR")}</label>
           <Input id="populacao-range" type="range" min={0} max={1200000} step={5000} value={populacaoMin} onChange={(e) => onPopulacaoMinChange(Number(e.target.value))} />
         </div>
       </div>
